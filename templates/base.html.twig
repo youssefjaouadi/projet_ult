@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>My music</title> <!--titre de site-->
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}"> <!--appel de fichier css-->
+    </head>
+    <body>
+    <div class="content">
+        <!--start header-->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <h3 class="navbar-brand title"><a href="/home/index" >My music</a></h3>
+            <div>
+                {% if app.session.get('nom') != null %} <!--test session-->
+                    <span class="user-name">Bienvenue {{ app.session.get('nom') }}</span>
+                    <a href="/user/deconnexion" class="btn btn-outline-light" role="button" aria-pressed="true">déconnexions</a> <!--route de deconnexion-->
+                {% else %}
+                    <a href="/user/login" class="btn btn-outline-light" role="button" aria-pressed="true">login</a> <!--route de connexion-->
+                    <a href="/user/inscription" class="btn btn-outline-light" role="button" aria-pressed="true">inscription</a> <!--route d'inscription-->
+                {% endif %}
+            </div>
+        </div>
+
+    </nav>
+        <!--end header-->
+        {% block body %}{% endblock %}
+    </div>
+        <!--start footer-->
+    <footer class="footer bg-secondary">
+        {% block footer %}
+            <p>© ULT 4GL</p>
+        {% endblock %}
+    </footer>
+        <!--end footer-->
+
+    </body>
+</html>

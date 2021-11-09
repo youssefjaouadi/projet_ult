@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}  {#import du theme parent#}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row recherche">
+            <div class="col-md-2">
+                <h4>Recherche</h4>
+            </div>
+            <form method="get" action="/home/recherche"> <!--formulaire recherche-->
+                <div class="input-group mb-3">
+                    <input type="text" name="recherche" class="form-control" placeholder="Rechercher une musique"  aria-describedby="search-btn">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" id="search-btn">Rechercher</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row list-genres">
+            <div class="col-md-2">
+                <h4>Genre musique</h4>
+            </div>
+            <div>
+                {% for genre in list_genre %} <!--boucle liste des genres-->
+                    <a href="/home/genre/{{ genre }}"> <!--lien genre appel a home/genre route-->
+                        <span class="badge badge-pill badge-primary">{{ genre }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="list-music">
+            <div class="col-md-2">
+            <h4>Nos musiques</h4>
+            </div>
+            <div class="row">
+                {% for music in list_music %} <!--bouce liste des mmusiques-->
+                <div class="col-md-3">
+                    <a href="/home/music/{{ music.titre }}"> <!--lien music appel a home/music route-->
+                    <div class="card" >
+                        <img src="{{ asset('images/'~music.image)}}" class="card-img-top" alt="..."> <!--asset pour recuperer l'image à pparit de dossier pubic-->
+                        <div class="card-body">
+                            <div class="card-text">
+                                <h3 class="music-title">{{ music.titre }}</h3>
+                                <p><span class="music-label">Chanseur/band :</span><span> {{ music.chanteur }}</span></p>
+                                <p><span class="music-label">durée :</span><span> {{ music.duree }}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

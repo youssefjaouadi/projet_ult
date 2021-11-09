@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %} {#import du theme parent#}
+{% block body %}
+    <form method="post" action="/user/nouveauinscri" class="col-md-6 inscri-form"> <!--formulaire inscripption-->
+        <h2>S'inscrire</h2>
+        <div>
+            <input class="form-control" placeholder="nom" type="text" name="nom">
+        </div>
+        <div>
+            <input class="form-control" placeholder="prenom" type="text" name="prenom">
+        </div>
+        <div>
+            <input class="form-control" placeholder="mot de asse" type="password" name="mdp">
+        </div>
+        <button type="submit" class="btn-primary btn">S'inscrire</button>
+    </form>
+{% endblock %}
